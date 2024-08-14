@@ -1,50 +1,74 @@
+# E-Voting App
+
+An application for managing and participating in digital voting.
+
 ## Demo
 
-<a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">Here</a>
+<a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View Demo Images</a>
+
+## Stack
+
+- Laravel 10
+- Bootstrap 4
+- MySQL
 
 ## Features
 
--   **Admin Panel**:
+- **Admin Panel**:
+  - Dashboard: Displays voter data (total voters, voted, not voted) and vote count chart
+  - Candidates: CRUD functionality for candidate data
+  - Voters: CRUD functionality for voter data
+  - Admins: CRUD functionality for admin data
 
-    -   Dashboard: Displays voter data (total voters, voted, not voted) and vote count chart
-    -   Candidates: CRUD functionality for candidate data
-    -   Voters: CRUD functionality for voter data
-    -   Admins: CRUD functionality for admin data
-
--   **Voter Panel**:
-    -   Election Page: Displays all candidates
-    -   Results Page: Displays vote count chart for all candidates
+- **Voter Panel**:
+  - Election Page: Displays all candidates
+  - Results Page: Displays vote count chart for all candidates
 
 ## Installation
 
-1. Create a new database named `e_voting` at your DBMS (ex: `PhpMyAdmin`).
-2. Clone this repository:
-    ```shell
-    git clone https://github.com/raflizocky/e-voting.git
+1. Database = `e_voting`
 
-    ```
-3. Open this project in your text editor (ex: `Visual Studio Code`).
+2. Terminal
+   ```shell
+   git clone https://github.com/raflizocky/e-voting.git
+   ```
+   ```shell
+   code e-voting
+   ```
 
-4. Create a new `.env` file.
+3. `.env`
+   - Terminal (VS Code):
+     ```shell
+     cp .env.example .env
+     ```
+   - Adjust `.env`:
+     ```shell
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=e_voting
+     DB_USERNAME=your_mysql_username
+     DB_PASSWORD=your_mysql_password
+     ```
 
-5. Copy the contents of `.env.example` and paste them into the newly created `.env` file.
+4. Terminal (VS Code)
+   - ```shell
+     composer i ; php artisan key:generate ; php artisan mi:f --seed
+     ```
+   - ```shell
+     php artisan serve
+     ```
 
-6. Run the following commands:
-    - ```shell
-      php artisan key:generate
-      ```
-    - ```shell
-      composer update
-      ```
-    - ```shell
-      composer install
-      ```
-    - ```shell
-      php artisan migrate:fresh --seed`
+## Usage
 
-      ```
-7. Access the web application with the credentials provided in the `DatabaseSeeder.php` file or the `users` table.
+- Admin
+  ```shell
+  email   : admin1@gmail.com
+  password: password 
+  ```
 
-## Contributing
-
-If you'd like to contribute, please fork the repository and make changes as you'd like. Pull requests are warmly welcome.
+- Voter
+  ```shell
+  email   : Voter1@gmail.com
+  password: password 
+  ```
