@@ -59,7 +59,7 @@ An application for managing and participating in digital voting.
 
 4. Terminal
     - ```shell
-      composer i ; php artisan key:generate ; php artisan mi:f --seed ; php artisan storage: link
+      composer i ; php artisan key:generate ; php artisan mi:f --seed ; php artisan storage:link
       ```
     - ```shell
       php artisan serve
