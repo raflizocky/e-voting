@@ -19,12 +19,15 @@ An application for managing and participating in digital voting.
     -   Election Page: Displays all candidates
     -   Results Page: Displays vote count chart for all candidates
 
-## Installation
+## Pre-requisites
 
 -   Updated at: 2024-12-28
 -   Min. version:
     -   PHP >= 8.1
     -   Composer
+    -   XAMPP/MAMP/Laragon/Herd/etc
+
+## Installation
 
 1. Create the database (ex: `e_voting`)
 
