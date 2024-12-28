@@ -35,6 +35,7 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|unique:candidates,name',
             'picture' => 'image|mimes:jpeg,png,jpg|max:2048',
@@ -57,13 +58,7 @@ class CandidateController extends Controller
             $resumeFile->storePubliclyAs('candidate-resumes', $resumeName);
         }
 
-        Candidate::create([
-            'name' => $request->name,
-            'picture' => $pictureName,
-            'resume' => $resumeName,
-            'election_number' => $request->election_number,
-            'total_voter' => 0,
-        ]);
+        Candidate::create($validatedData);
 
         return redirect()->route('candidate.index')->with('message', 'Data Added Successfully!');
     }
@@ -134,12 +129,10 @@ class CandidateController extends Controller
             }
         }
 
-        $candidates->update([
-            'name' => $request->name,
-            'picture' => $newPictureName,
-            'resume' => $newResumeName,
-            'election_number' => $request->election_number,
-        ]);
+        $validatedData['picture'] = $newPictureName;
+        $validatedData['resume'] = $newResumeName;
+
+        $candidates->update($validatedData);
 
         return redirect()->route('candidate.index')->with('message', 'Data Updated Successfully!');
     }

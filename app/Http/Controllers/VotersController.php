@@ -11,7 +11,7 @@ class VotersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
         $voters = User::where('role', 'voter')->get()->map(function ($user) {
             $status = $user->choice !== null ? 'Voted' : 'Not Voted';
