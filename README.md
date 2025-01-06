@@ -1,7 +1,3 @@
-# E-Voting App
-
-An application for managing and participating in digital voting.
-
 ## Demo
 
 <a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View Demo Images</a>
@@ -19,15 +15,15 @@ An application for managing and participating in digital voting.
     -   Election Page: Displays all candidates
     -   Results Page: Displays vote count chart for all candidates
 
-## Pre-requisites
+## Prerequisites
 
--   Updated at: 2024-12-28
--   Min. version:
-    -   PHP >= 8.1
-    -   Composer
-    -   XAMPP/MAMP/Laragon/Herd/etc
+-   PHP >= 8.1
+-   Composer
+-   XAMPP/MAMP/Laragon/Herd/etc
 
 ## Installation
+
+### Without Docker
 
 1. Create the database (ex: `e_voting`)
 
@@ -52,7 +48,7 @@ An application for managing and participating in digital voting.
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
-        DB_DATABASE=e_voting
+        DB_DATABASE=your_mysql_db
         DB_USERNAME=your_mysql_username
         DB_PASSWORD=your_mysql_password
         ```
@@ -64,6 +60,70 @@ An application for managing and participating in digital voting.
     - ```shell
       php artisan serve
       ```
+
+---
+
+### With Docker
+
+> If it's laggy when running, that's okay/fine.
+
+1. Terminal
+
+    ```shell
+    git clone https://github.com/raflizocky/e-voting.git
+    ```
+
+    ```shell
+    code e-voting
+    ```
+
+2. Open Docker Desktop (Windows, MacOS)
+
+3. `.env`
+
+    - Terminal:
+        ```shell
+        cp .env.example .env
+        ```
+    - Adjust `.env`:
+        ```shell
+        DB_CONNECTION=mysql
+        DB_HOST=mysql_db
+        DB_PORT=3306
+        DB_DATABASE=e_voting
+        DB_USERNAME=root
+        DB_PASSWORD=secret
+        ```
+
+4. Terminal (`makefile` is optional, u can use usual docker compose command (see `makefile` file))
+
+    - ```shell
+      winget install ezwinports.make #for windows only
+      ```
+    - ```shell
+      make build
+      ```
+    - ```shell
+      make up
+      ```
+    - ```shell
+      make migrate
+      ```
+    - ```shell
+      make db-seed
+      ```
+    - ```shell
+      make storage-link
+      ```
+    - ```shell
+      make key-generate
+      ```
+
+5. Open project:
+    - e-voting -> `8000:8000`
+    - phpmyadmin -> `8080:80`
+
+---
 
 ## Usage
 
@@ -80,26 +140,14 @@ An application for managing and participating in digital voting.
     password: password
     ```
 
+## Contributing
+
+If you encounter any issues or would like to contribute to the project, feel free to:
+
+-   Report any [issues](https://github.com/raflizocky/e-voting/issues)
+-   Submit a [pull request](https://github.com/raflizocky/e-voting/pulls)
+-   Participate in [discussions](https://github.com/raflizocky/e-voting/discussions) for any questions, feedback, or suggestions
+
 ## License
 
-```
-Copyright (c) 2024 Rafli Zocky Leonard
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+Code released under the [MIT License](https://github.com/raflizocky/e-voting/blob/main/LICENSE).
