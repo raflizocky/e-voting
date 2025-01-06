@@ -1,0 +1,28 @@
+services:
+  e-voting:
+    container_name: e_voting
+    build: .
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8000:8000
+
+  mysql_db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: e_voting
+      
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql_db
+    depends_on:
+      - mysql_db
+
+volumes:
+  mysql-data:
