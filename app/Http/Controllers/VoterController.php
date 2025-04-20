@@ -62,21 +62,21 @@ class VoterController extends Controller
             ]);
         }
     }
-    public function show($id)
-    {
-        $candidate = Candidate::findOrFail($id);
+    // public function show($id)
+    // {
+    //     $candidate = Candidate::findOrFail($id);
 
-        $pdfPath = storage_path('app/public/candidate-resumes/' . $candidate->resume);
+    //     $pdfPath = storage_path('app/public/candidate-resumes/' . $candidate->resume);
 
-        if (!File::exists($pdfPath)) {
-            abort(404);
-        }
+    //     if (!File::exists($pdfPath)) {
+    //         abort(404);
+    //     }
 
-        $headers = [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . $candidate->resume . '"',
-        ];
+    //     $headers = [
+    //         'Content-Type' => 'application/pdf',
+    //         'Content-Disposition' => 'inline; filename="' . $candidate->resume . '"',
+    //     ];
 
-        return response()->file($pdfPath, $headers);
-    }
+    //     return response()->file($pdfPath, $headers);
+    // }
 }

@@ -45,15 +45,16 @@
                                                 style="max-height: 250px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
                                                 <img class="img-fluid"
                                                     style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease-in-out;"
-                                                    src="{{ asset('storage/candidate-pictures/' . $candidate->picture) }}"
+                                                    src="{{ asset('storage/' . $candidate->picture) }}"
                                                     alt="Candidate Picture"
                                                     onmouseover="this.style.transform='scale(1.1)'"
                                                     onmouseout="this.style.transform='scale(1)'">
                                             </div>
                                             <div class="row mt-3">
                                                 <div class="col">
-                                                    <a href="{{ route('voter.show', $candidate->id) }}" target="_blank"
-                                                        class="btn btn-danger btn-user btn-block">Resume</a>
+                                                    <a href="{{ asset('storage/' . $candidate->resume) }}"
+                                                        class="btn btn-danger btn-user btn-block"
+                                                        target="_blank">Resume</a>
                                                 </div>
                                                 <div class="col">
                                                     <!-- Form Section -->

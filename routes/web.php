@@ -40,6 +40,5 @@ Route::middleware(['auth', 'check.user.role'])->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
         Route::get('/result', 'result')->name('result');
-        Route::get('/{id}', 'show')->name('show');
     });
 });
