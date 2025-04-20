@@ -1,6 +1,7 @@
 ## Demo
+<img src="https://github.com/user-attachments/assets/e8648a20-5683-479c-9431-9949a4626699" alt="Dashboard" width="100%">
 
-<a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View Demo Images</a>
+<a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View more</a>
 
 ## Features
 
