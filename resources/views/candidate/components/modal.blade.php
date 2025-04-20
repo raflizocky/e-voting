@@ -54,7 +54,7 @@
                     </button>
                 </div>
                 <form id="editCandidateForm" method="post"
-                    action="{{ isset($row) ? route('candidate.update', $row->id) : route('candidate.update', '') }}">
+                    action="{{ route('candidate.update', ['candidate' => 0]) }}">
                     @csrf
                     @method('PUT')
                     <input type="hidden" id="editId" name="id">
