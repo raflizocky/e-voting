@@ -23,7 +23,8 @@
                                         data-toggle="modal" data-target="#editAdminModal" data-id="{{ $row->id }}"
                                         data-name="{{ $row->name }}" data-email="{{ $row->email }}"
                                         data-password="{{ $row->password }}">
-                                        <i class="fas fa-edit"></i>
+                                        <i class="fas fa-edit" style="font-size: 0.875rem;"></i>
+                                        <span>Edit</span>
                                     </button>
                                     <form action="{{ route('admin.destroy', $row->id) }}" method="post"
                                         class="d-inline">
@@ -31,7 +32,8 @@
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm btn-block" aria-label="Delete Voter"
                                             onclick="return confirm('Delete this data?')">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="fas fa-trash" style="font-size: 0.875rem;"></i>
+                                            <span>Delete</span>
                                         </button>
                                     </form>
                                 </td>
