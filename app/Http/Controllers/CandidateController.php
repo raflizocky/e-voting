@@ -42,24 +42,18 @@ class CandidateController extends Controller
             'election_number' => 'required|unique:candidates,election_number',
         ]);
 
-        $pictureName = null;
-        $resumeName = null;
+        $pictureFile = $request->file('picture');
+        $pictureName = uniqid('picture_') . '.' . $pictureFile->getClientOriginalExtension();
+        $pictureFile->storeAs('', $pictureName);
+        $validatedData['picture'] = $pictureName;
 
-        if ($request->file('picture')) {
-            $pictureFile = $request->file('picture');
-            $pictureName = uniqid('picture_') . '.' . $pictureFile->getClientOriginalExtension();
-            $pictureFile->storePubliclyAs('candidate-pictures', $pictureName);
-        }
-
-        if ($request->file('resume')) {
-            $resumeFile = $request->file('resume');
-            $resumeName = uniqid('resume_') . '.' . $resumeFile->getClientOriginalExtension();
-            $resumeFile->storePubliclyAs('candidate-resumes', $resumeName);
-        }
-
+        $resumeFile = $request->file('resume');
+        $resumeName = uniqid('resume_') . '.' . $resumeFile->getClientOriginalExtension();
+        $resumeFile->storeAs('', $resumeName);
+        $validatedData['resume'] = $resumeName;
         Candidate::create($validatedData);
 
-        return redirect()->route('candidate.index')->with('message', 'Data Added Successfully!');
+        return redirect()->route('candidate.index')->with('success', 'Candidate added successfully!');
     }
 
     /**
