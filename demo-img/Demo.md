@@ -4,7 +4,7 @@
 
 ## Admin Panel
 
-<img src="dashboard.jpeg" alt="Dashboard" width="100%"> <img src="candidates.jpeg" alt="Candidates List" width="100%"> <img src="voters.jpeg" alt="Voters List" width="100%"> <img src="admins.jpeg" alt="Admins List" width="100%">
+<img src="dashboard.jpeg" alt="Dashboard" width="100%"> <img src="dashboard-single-email.jpeg" alt="Dashboard Send Single Email" width="100%"> <img src="dashboard-all-email.jpeg" alt="Dashboard Send All Email" width="100%"> <img src="candidates.jpeg" alt="Candidates List" width="100%"> <img src="voters.jpeg" alt="Voters List" width="100%"> <img src="admins.jpeg" alt="Admins List" width="100%">
 
 ## Voter Panel
 
