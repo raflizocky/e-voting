@@ -20,12 +20,12 @@
                             <tr>
                                 <td>{{ $candidate->name }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/candidate-pictures/' . $candidate->picture) }}"
-                                        alt="Candidate Picture" width="100">
+                                    <img src="{{ asset('storage/' . $candidate->picture) }}" alt="Candidate Picture"
+                                        width="100">
                                 </td>
                                 <td>
-                                    <a href="{{ route('candidate.show', $candidate->id) }}" target="_blank"
-                                        class="btn btn-primary btn-sm">Resume </a>
+                                    <a href="{{ asset('storage/' . $candidate->resume) }}"
+                                        class="btn btn-sm btn-primary" target="_blank">Resume</a>
                                 </td>
                                 <td>{{ $candidate->election_number }}</td>
                                 <td>

@@ -30,7 +30,7 @@ Route::middleware(['auth', 'check.user.role'])->group(function () {
         Route::get('/', 'index')->name('index');
     });
 
-    Route::resource('candidate', CandidateController::class)->except(['create']);
+    Route::resource('candidate', CandidateController::class)->except(['create','show']);
     Route::resource('voters', VotersController::class)->except(['create', 'show']);
     Route::resource('admin', AdminController::class)->except(['create', 'show']);
 

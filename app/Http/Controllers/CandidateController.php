@@ -66,22 +66,22 @@ class CandidateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
-        $candidates = Candidate::findOrFail($id);
-        $pdfPath = storage_path('app/public/candidate-resumes/' . $candidates->resume);
+    // public function show($id)
+    // {
+    //     $candidates = Candidate::findOrFail($id);
+    //     $pdfPath = storage_path('app/public/candidate-resumes/' . $candidates->resume);
 
-        if (!File::exists($pdfPath)) {
-            abort(404);
-        }
+    //     if (!File::exists($pdfPath)) {
+    //         abort(404);
+    //     }
 
-        $headers = [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . $candidates->resume . '"',
-        ];
+    //     $headers = [
+    //         'Content-Type' => 'application/pdf',
+    //         'Content-Disposition' => 'inline; filename="' . $candidates->resume . '"',
+    //     ];
 
-        return response()->file($pdfPath, $headers);
-    }
+    //     return response()->file($pdfPath, $headers);
+    // }
 
     /**
      * Show the form for editing the specified resource.
