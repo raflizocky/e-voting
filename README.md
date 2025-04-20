@@ -17,7 +17,7 @@
 
 ## Prerequisites
 
--   PHP >= 8.1
+-   PHP >= 8.2
 -   Composer
 -   XAMPP/MAMP/Laragon/Herd/etc
 
@@ -55,10 +55,7 @@
 
 4. Terminal
     - ```shell
-      composer i ; php artisan key:generate ; php artisan mi:f --seed ; php artisan storage:link
-      ```
-    - ```shell
-      php artisan serve
+      composer update ; composer i ; php artisan key:generate ; php artisan mi:f --seed ; php artisan storage:link ; php artisan ser
       ```
 
 ---
