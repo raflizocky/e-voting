@@ -6,7 +6,7 @@
 
 -   **Admin Panel**:
 
-    -   Dashboard: Displays voter data (total voters, voted, not voted) and vote count chart
+    -   Dashboard: Displays voter data (total voters, voted, not voted), vote count chart, generate pdf, and send email 
     -   Candidates: CRUD functionality for candidate data
     -   Voters: CRUD functionality for voter data
     -   Admins: CRUD functionality for admin data
@@ -51,6 +51,17 @@
         DB_DATABASE=your_mysql_db
         DB_USERNAME=your_mysql_username
         DB_PASSWORD=your_mysql_password
+        ```
+    - Adjust `.env` (for send mail (gmail), optional):
+        ```shell
+        MAIL_MAILER=smtp
+        MAIL_HOST=smtp.gmail.com
+        MAIL_PORT=587
+        MAIL_USERNAME=youremail@gmail.com
+        MAIL_PASSWORD=your_email_app_password
+        MAIL_ENCRYPTION=tls
+        MAIL_FROM_ADDRESS="youremail@gmail.com"
+        MAIL_FROM_NAME="${APP_NAME}"
         ```
 
 4. Terminal

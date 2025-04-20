@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
 
             // download random image
             $gender = $faker->randomElement(['men', 'women']);
-            $imageUrl = "https://randomuser.me/api/portraits/{$gender}/" . rand(1, 99) . '.jpg';
+            // $imageUrl = "https://randomuser.me/api/portraits/{$gender}/" . rand(1, 99) . '.jpg';
+            $imageUrl = "https://i.pravatar.cc/150?img=" . rand(1, 70);
             $imageContent = file_get_contents($imageUrl);
 
             // save to storage/public

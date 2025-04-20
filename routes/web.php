@@ -29,6 +29,7 @@ Route::middleware(['auth', 'check.user.role'])->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/generate-pdf', 'generatePDF')->name('generate-pdf');
+        Route::post('/send-report-emails',  'sendReportEmails')->name('send-report-emails');
     });
 
     Route::resource('candidate', CandidateController::class)->except(['create','show']);
