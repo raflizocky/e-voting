@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
     public function index()
     {
         return view('login.index', [
-            'title' => 'E-Voting | Login'
+            'title' => 'E-Voting | Login',
         ]);
     }
 
@@ -25,7 +25,7 @@ class LoginController extends Controller
         ], [
             'email.required' => 'Email harus diisi.',
             'email.email' => 'Email tidak valid.',
-            'password.required' => 'Password harus diisi.'
+            'password.required' => 'Password harus diisi.',
         ]);
 
         $user = User::where('email', $validatedData['email'])->first();
@@ -41,6 +41,7 @@ class LoginController extends Controller
                 return redirect()->route('voter.index');
             } else {
                 Auth::logout();
+
                 return back()->withErrors(['Peran pengguna tidak valid.'])->withInput(['email' => $user->email]);
             }
         }

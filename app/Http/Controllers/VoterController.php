@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Candidate;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -19,9 +19,9 @@ class VoterController extends Controller
 
         $candidates = Candidate::orderBy('election_number')->get();
 
-        return view("voter.index", [
+        return view('voter.index', [
             'title' => 'E-Voting | Election Page',
-            'candidates' => $candidates
+            'candidates' => $candidates,
         ]);
     }
 
@@ -54,11 +54,11 @@ class VoterController extends Controller
 
             return view('voter.result', [
                 'title' => 'E-Voting | Election Results Page',
-                'candidateVoteData' => $candidateVoteData
+                'candidateVoteData' => $candidateVoteData,
             ]);
         } else {
             return view('voter.index', [
-                'title' => 'E-Voting | Election Page'
+                'title' => 'E-Voting | Election Page',
             ]);
         }
     }

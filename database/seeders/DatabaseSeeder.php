@@ -3,13 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
 use App\Models\Candidate;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Faker\Factory as Faker;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,21 +33,21 @@ class DatabaseSeeder extends Seeder
         $candidateIds = [];
 
         foreach ($candidates as $candidate) {
-            $pictureFilename = Str::random(10) . '.jpg';
-            $resumeFilename = Str::random(10) . '.pdf';
+            $pictureFilename = Str::random(10).'.jpg';
+            $resumeFilename = Str::random(10).'.pdf';
 
-            $picturePath = 'candidate-pictures/' . $pictureFilename;
-            $resumePath = 'candidate-resumes/' . $resumeFilename;
+            $picturePath = 'candidate-pictures/'.$pictureFilename;
+            $resumePath = 'candidate-resumes/'.$resumeFilename;
 
             // download random image
             $gender = $faker->randomElement(['men', 'women']);
             // $imageUrl = "https://randomuser.me/api/portraits/{$gender}/" . rand(1, 99) . '.jpg';
-            $imageUrl = "https://i.pravatar.cc/150?img=" . rand(1, 70);
+            $imageUrl = 'https://i.pravatar.cc/150?img='.rand(1, 70);
             $imageContent = file_get_contents($imageUrl);
 
             // save to storage/public
             Storage::disk('public')->put($picturePath, $imageContent);
-            
+
             $pdf = Pdf::loadHTML('<h1>Fake Resume</h1><p>This is a dummy resume for testing.</p>');
             Storage::disk('public')->put($resumePath, $pdf->output());
 

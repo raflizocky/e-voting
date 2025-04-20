@@ -4,11 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Observers\UserObserver;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 #[ObservedBy([UserObserver::class])]
 class User extends Authenticatable
@@ -21,7 +21,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table = 'users';
+
     protected $primaryKey = 'id';
+
     protected $fillable = ['name', 'email', 'password', 'role'];
 
     public function candidate()

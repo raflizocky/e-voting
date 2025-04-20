@@ -43,12 +43,12 @@ class CandidateController extends Controller
         ]);
 
         $pictureFile = $request->file('picture');
-        $pictureName = uniqid('picture_') . '.' . $pictureFile->getClientOriginalExtension();
+        $pictureName = uniqid('picture_').'.'.$pictureFile->getClientOriginalExtension();
         $pictureFile->storeAs('', $pictureName);
         $validatedData['picture'] = $pictureName;
 
         $resumeFile = $request->file('resume');
-        $resumeName = uniqid('resume_') . '.' . $resumeFile->getClientOriginalExtension();
+        $resumeName = uniqid('resume_').'.'.$resumeFile->getClientOriginalExtension();
         $resumeFile->storeAs('', $resumeName);
         $validatedData['resume'] = $resumeName;
         Candidate::create($validatedData);
@@ -82,6 +82,7 @@ class CandidateController extends Controller
     public function edit($id)
     {
         $candidates = Candidate::findOrFail($id);
+
         return response()->json($candidates);
     }
 
@@ -93,10 +94,10 @@ class CandidateController extends Controller
         $candidates = Candidate::findOrFail($id);
 
         $validatedData = $request->validate([
-            'name' => 'required|unique:candidates,name,' . $candidates->id,
+            'name' => 'required|unique:candidates,name,'.$candidates->id,
             'picture' => $request->hasFile('picture') ? 'required|image|mimes:jpeg,png,jpg' : 'nullable',
             'resume' => $request->hasFile('resume') ? 'required|mimes:pdf' : 'nullable',
-            'election_number' => 'required|unique:candidates,election_number,' . $candidates->id,
+            'election_number' => 'required|unique:candidates,election_number,'.$candidates->id,
         ]);
 
         if ($request->hasFile('picture')) {
@@ -105,7 +106,7 @@ class CandidateController extends Controller
             }
 
             $pictureFile = $request->file('picture');
-            $pictureName = uniqid('picture_') . '.' . $pictureFile->getClientOriginalExtension();
+            $pictureName = uniqid('picture_').'.'.$pictureFile->getClientOriginalExtension();
             $pictureFile->storeAs('', $pictureName);
             $validatedData['picture'] = $pictureName;
         } else {
@@ -118,7 +119,7 @@ class CandidateController extends Controller
             }
 
             $resumeFile = $request->file('resume');
-            $resumeName = uniqid('resume_') . '.' . $resumeFile->getClientOriginalExtension();
+            $resumeName = uniqid('resume_').'.'.$resumeFile->getClientOriginalExtension();
             $resumeFile->storeAs('', $resumeName);
             $validatedData['resume'] = $resumeName;
         } else {

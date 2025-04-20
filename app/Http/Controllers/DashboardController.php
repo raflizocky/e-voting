@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Candidate;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Mail\VotingReportMail;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Candidate;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -38,7 +38,8 @@ class DashboardController extends Controller
         ];
 
         $pdf = Pdf::loadView('dashboard.pdf', $data);
-        return $pdf->stream('voting-report-' . now()->format('Y-m-d') . '.pdf');
+
+        return $pdf->stream('voting-report-'.now()->format('Y-m-d').'.pdf');
     }
 
     public function sendReportEmails(Request $request)
@@ -65,7 +66,7 @@ class DashboardController extends Controller
                 $sentCount++;
             } catch (\Exception $e) {
                 $failedCount++;
-                \Log::error("Failed to send email to {$email}: " . $e->getMessage());
+                \Log::error("Failed to send email to {$email}: ".$e->getMessage());
             }
 
             $message = $sentCount > 0 ? "Email sent successfully to {$email}" : "Failed to send email to {$email}";
@@ -80,7 +81,7 @@ class DashboardController extends Controller
                     $sentCount++;
                 } catch (\Exception $e) {
                     $failedCount++;
-                    \Log::error("Failed to send email to {$recipient->email}: " . $e->getMessage());
+                    \Log::error("Failed to send email to {$recipient->email}: ".$e->getMessage());
                 }
             }
 

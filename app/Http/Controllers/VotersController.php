@@ -16,12 +16,13 @@ class VotersController extends Controller
         $voters = User::where('role', 'voter')->get()->map(function ($user) {
             $status = $user->choice !== null ? 'Voted' : 'Not Voted';
             $user->status = $status;
+
             return $user;
         });
 
         return view('voters.index', [
             'title' => 'E-Voting-HMPS | Voters List',
-            'voters' => $voters
+            'voters' => $voters,
         ]);
     }
 
@@ -68,6 +69,7 @@ class VotersController extends Controller
     public function edit(string $id)
     {
         $voters = User::findOrFail($id);
+
         return response()->json($voters);
     }
 
@@ -78,7 +80,7 @@ class VotersController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users,email,' . $id,
+            'email' => 'required|unique:users,email,'.$id,
         ]);
         $voters = User::findOrFail($id);
         if ($request->filled('password')) {
@@ -96,6 +98,7 @@ class VotersController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
+
         return redirect()->route('voters.index')->with('message', 'Data deleted successfully!');
     }
 }

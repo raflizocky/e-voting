@@ -22,11 +22,13 @@ class CheckUserRole
             if (strpos($currentRoute, 'voter.') === 0) {
                 return redirect()->route('dashboard.index')->with('error', 'Access Denied');
             }
+
             return $next($request);
         } elseif ($userRole === 'voter') {
             if (strpos($currentRoute, 'voter.') !== 0) {
                 return redirect()->route('voter.index')->with('error', 'Access Denied');
             }
+
             return $next($request);
         } else {
             return redirect()->route('login')->with('error', 'Access Denied');

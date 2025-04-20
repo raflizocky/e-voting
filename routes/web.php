@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VoterController;
 use App\Http\Controllers\VotersController;
-use App\Http\Controllers\CandidateController;
-use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +29,10 @@ Route::middleware(['auth', 'check.user.role'])->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/generate-pdf', 'generatePDF')->name('generate-pdf');
-        Route::post('/send-report-emails',  'sendReportEmails')->name('send-report-emails');
+        Route::post('/send-report-emails', 'sendReportEmails')->name('send-report-emails');
     });
 
-    Route::resource('candidate', CandidateController::class)->except(['create','show']);
+    Route::resource('candidate', CandidateController::class)->except(['create', 'show']);
     Route::resource('voters', VotersController::class)->except(['create', 'show']);
     Route::resource('admin', AdminController::class)->except(['create', 'show']);
 

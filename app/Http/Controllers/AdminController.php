@@ -17,7 +17,7 @@ class AdminController extends Controller
 
         return view('admin.index', [
             'title' => 'E-Voting-HMPS | Admin List',
-            'admin' => $admins
+            'admin' => $admins,
         ]);
     }
 
@@ -64,6 +64,7 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $admins = User::findOrFail($id);
+
         return response()->json($admins);
     }
 
@@ -74,7 +75,7 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users,email,' . $id,
+            'email' => 'required|unique:users,email,'.$id,
             'password' => 'required|min:8',
         ]);
 
@@ -95,6 +96,7 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
+
         return redirect()->route('admin.index')->with('message', 'Data deleted successfully!');
     }
 }
