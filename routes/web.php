@@ -28,6 +28,7 @@ Route::controller(LoginController::class)->group(function () {
 Route::middleware(['auth', 'check.user.role'])->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/generate-pdf', 'generatePDF')->name('generate-pdf');
     });
 
     Route::resource('candidate', CandidateController::class)->except(['create','show']);
