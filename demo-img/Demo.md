@@ -4,10 +4,10 @@
 
 ## Admin Panel
 
-<img src="dashboard.jpeg" alt="Dashboard" width="100%"> <img src="dashboard-single-email.jpeg" alt="Dashboard Send Single Email" width="100%"> <img src="dashboard-all-email.jpeg" alt="Dashboard Send All Email" width="100%"> <img src="candidates.jpeg" alt="Candidates List" width="100%"> <img src="voters.jpeg" alt="Voters List" width="100%"> <img src="admins.jpeg" alt="Admins List" width="100%">
+<img src="dashboardd.jpeg" alt="Dashboard" width="100%"> <img src="dashboard-single-email.png" alt="Dashboard Send Single Email" width="100%"> <img src="dashboard-all-email.png" alt="Dashboard Send All Email" width="100%"> <img src="candidatess.jpeg" alt="Candidates List" width="100%"> <img src="voterss.jpeg" alt="Voters List" width="100%"> <img src="adminss.jpeg" alt="Admins List" width="100%">
 
 ## Voter Panel
 
-<img src="election-page.jpeg" alt="Election Page" width="100%"> <img src="election-result.jpeg" alt="Election Result" width="100%">
+<img src="election-pages.jpeg" alt="Election Page" width="100%"> <img src="election-results.jpeg" alt="Election Result" width="100%">
 
 <a href="https://github.com/raflizocky/e-voting">back to main page</a>
