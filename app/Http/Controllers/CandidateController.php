@@ -16,9 +16,9 @@ class CandidateController extends Controller
     {
         $candidates = Candidate::get();
 
-        return view("candidate.index", [
+        return view('candidate.index', [
             'title' => 'E-Voting | Candidate List',
-            'candidates' => $candidates
+            'candidates' => $candidates,
         ]);
     }
 
@@ -35,7 +35,6 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'name' => 'required|unique:candidates,name',
             'picture' => 'image|mimes:jpeg,png,jpg|max:2048',
@@ -106,31 +105,31 @@ class CandidateController extends Controller
             'election_number' => 'required|unique:candidates,election_number,' . $candidates->id,
         ]);
 
-        $newPictureName = $candidates->picture;
-        $newResumeName = $candidates->resume;
-
         if ($request->hasFile('picture')) {
-            $pictureFile = $request->file('picture');
-            $newPictureName = uniqid('picture_') . '.' . $pictureFile->getClientOriginalExtension();
-            $pictureFile->storePubliclyAs('candidate-pictures', $newPictureName);
-
-            if ($candidates->picture) {
-                Storage::delete('candidate-pictures/' . $candidates->picture);
+            if ($candidates->picture && Storage::exists($candidates->picture)) {
+                Storage::delete($candidates->picture);
             }
+
+            $pictureFile = $request->file('picture');
+            $pictureName = uniqid('picture_') . '.' . $pictureFile->getClientOriginalExtension();
+            $pictureFile->storeAs('', $pictureName);
+            $validatedData['picture'] = $pictureName;
+        } else {
+            $validatedData['picture'] = $candidates->picture;
         }
 
         if ($request->hasFile('resume')) {
-            $cvFile = $request->file('resume');
-            $newResumeName = uniqid('resume_') . '.' . $cvFile->getClientOriginalExtension();
-            $cvFile->storePubliclyAs('candidate-resumes', $newResumeName);
-
-            if ($candidates->resume) {
-                Storage::delete('candidate-resumes/' . $candidates->resume);
+            if ($candidates->resume && Storage::exists($candidates->resume)) {
+                Storage::delete($candidates->resume);
             }
-        }
 
-        $validatedData['picture'] = $newPictureName;
-        $validatedData['resume'] = $newResumeName;
+            $resumeFile = $request->file('resume');
+            $resumeName = uniqid('resume_') . '.' . $resumeFile->getClientOriginalExtension();
+            $resumeFile->storeAs('', $resumeName);
+            $validatedData['resume'] = $resumeName;
+        } else {
+            $validatedData['resume'] = $candidates->resume;
+        }
 
         $candidates->update($validatedData);
 
@@ -144,12 +143,12 @@ class CandidateController extends Controller
     {
         $candidates = Candidate::findOrFail($id);
 
-        if ($candidates->picture) {
-            Storage::delete('candidate-pictures/' . $candidates->picture);
+        if ($candidates->picture && Storage::exists($candidates->picture)) {
+            Storage::delete($candidates->picture);
         }
 
-        if ($candidates->resume) {
-            Storage::delete('candidate-resumes/' . $candidates->resume);
+        if ($candidates->resume && Storage::exists($candidates->resume)) {
+            Storage::delete($candidates->resume);
         }
 
         $candidates->delete();

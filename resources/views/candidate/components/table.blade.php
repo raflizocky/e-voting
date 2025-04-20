@@ -35,7 +35,8 @@
                                         data-election_number="{{ $candidate->election_number }}"
                                         data-picture="{{ $candidate->picture }}" data-resume="{{ $candidate->resume }}"
                                         aria-label="Edit Candidate {{ $candidate->name }}">
-                                        <i class="fas fa-edit"></i>
+                                        <i class="fas fa-edit" style="font-size: 0.875rem;"></i>
+                                        <span>Edit</span>
                                     </button>
                                     <form action="{{ route('candidate.destroy', $candidate->id) }}" method="post"
                                         class="d-inline">
@@ -44,7 +45,8 @@
                                         <button class="btn btn-danger btn-sm btn-block"
                                             onclick="return confirm('Are you sure you want to delete this data?')"
                                             aria-label="Delete Candidate {{ $candidate->name }}">
-                                            <i class="fas fa-trash"></i>
+                                            <i class="fas fa-trash" style="font-size: 0.875rem;"></i>
+                                            <span>Delete</span>
                                         </button>
                                     </form>
                                 </td>

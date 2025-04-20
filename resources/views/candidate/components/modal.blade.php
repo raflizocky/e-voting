@@ -66,19 +66,13 @@
                         <div class="form-group">
                             <label for="editPicture">Picture</label>
                             <input type="file" class="form-control" id="editPicture" name="picture" accept="image/*">
-                            <small class="form-text text-muted">Leave blank if you don't want to change the
-                                picture.</small>
-                            <label>Current Picture</label>
                             <img id="editPicturePreview" class="img-thumbnail">
                         </div>
                         <div class="form-group">
                             <label for="editResume">Resume</label>
                             <input type="file" class="form-control" id="editResume" name="resume"
                                 accept="application/pdf">
-                            <small class="form-text text-muted">Leave blank if you don't want to change the
-                                Resume.</small>
-                            <label>Current Resume</label>
-                            <span id="editResumePreview"></span>
+                            <a id="editResumePreview" class="d-block mt-1" target="_blank"></a>
                         </div>
                         <div class="form-group">
                             <label for="editElectionNumber">Election Number</label>
@@ -96,20 +90,32 @@
     </div>
 
     <script>
-        $('#editCandidateModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget);
-            var id = button.data('id');
-            var name = button.data('name');
-            var electionNumber = button.data('election_number');
-            var picture = button.data('picture');
-            var resume = button.data('resume');
+        $(document).ready(function() {
+            $('#editCandidateModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                var electionNumber = button.data('election_number');
+                var picture = button.data('picture');
+                var resume = button.data('resume');
 
-            $('#editName').val(name);
-            $('#editElectionNumber').val(electionNumber);
-            $('#editId').val(id);
-            $('#editPicturePreview').attr('src', '/storage/candidate-pictures/' + picture);
-            $('#editResumePreview').text(resume);
+                $('#editName').val(name);
+                $('#editElectionNumber').val(electionNumber);
+                $('#editId').val(id);
+                $('#editPicturePreview').attr('src', '/storage/' + picture);
 
-            $('#editCandidateForm').attr('action', '/candidate/' + id).attr('enctype', 'multipart/form-data');
+                if (resume) {
+                    $('#editResumePreview')
+                        .attr('href', '/storage/' + resume)
+                        .attr('title', resume)
+                        .html('<small>View current resume' + '</small>')
+                        .show();
+                } else {
+                    $('#editResumePreview').hide();
+                }
+
+                $('#editCandidateForm').attr('action', '/candidate/' + id).attr('enctype',
+                    'multipart/form-data');
+            });
         });
     </script>
