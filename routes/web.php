@@ -34,6 +34,8 @@ Route::middleware(['auth', 'check.user.role'])->group(function () {
 
     Route::resource('candidate', CandidateController::class)->except(['create', 'show']);
     Route::resource('voters', VotersController::class)->except(['create', 'show']);
+    Route::get('/voters/export/excel', [VotersController::class, 'exportExcel'])->name('voters.export.excel');
+    Route::get('/voters/export/pdf', [VotersController::class, 'exportPdf'])->name('voters.export.pdf');
     Route::resource('admin', AdminController::class)->except(['create', 'show']);
 
     Route::prefix('voter')->name('voter.')->controller(VoterController::class)->group(function () {

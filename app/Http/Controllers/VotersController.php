@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class VotersController extends Controller
 {
@@ -100,5 +103,70 @@ class VotersController extends Controller
         User::destroy($id);
 
         return redirect()->route('voters.index')->with('message', 'Data deleted successfully!');
+    }
+
+    public function exportExcel()
+    {
+        $voters = User::where('role', 'voter')->get()->map(function ($user) {
+            $status = $user->choice !== null ? 'Voted' : 'Not Voted';
+            $user->status = $status;
+
+            return $user;
+        });
+
+        $spreadsheet = new Spreadsheet;
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Set header row
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Name');
+        $sheet->setCellValue('C1', 'Email');
+        $sheet->setCellValue('D1', 'Voting Status');
+
+        // Make headers bold
+        $sheet->getStyle('A1:D1')->getFont()->setBold(true);
+
+        // Add data rows
+        $row = 2;
+        foreach ($voters as $index => $voter) {
+            $sheet->setCellValue('A'.$row, $index + 1);
+            $sheet->setCellValue('B'.$row, $voter->name);
+            $sheet->setCellValue('C'.$row, $voter->email);
+            $sheet->setCellValue('D'.$row, $voter->status);
+            $row++;
+        }
+
+        // Auto-size columns
+        foreach (range('A', 'D') as $column) {
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'voters_list_'.date('Y-m-d').'.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+        exit;
+    }
+
+    public function exportPdf()
+    {
+        $voters = User::where('role', 'voter')->get()->map(function ($user, $index) {
+            $status = $user->choice !== null ? 'Voted' : 'Not Voted';
+            $user->status = $status;
+            $user->number = $index + 1;
+
+            return $user;
+        });
+
+        $pdf = PDF::loadView('voters.export-pdf', [
+            'voters' => $voters,
+            'date' => date('Y-m-d'),
+        ]);
+
+        return $pdf->stream('voters_list_'.date('Y-m-d').'.pdf');
     }
 }
