@@ -6,9 +6,9 @@
 ## Features
 
 -   **Admin Panel**:
-    -   Dashboard: Displays voter data (total voters, voted, not voted), vote count chart, generate pdf, and send email 
+    -   Dashboard: Displays voter data (total voters, voted, not voted), vote count chart, generate pdf, and send vote report to email 
     -   Candidates: CRUD functionality for candidate data
-    -   Voters: CRUD functionality for voter data
+    -   Voters: CRUD functionality for voter data, export (excel, pdf) voter data, import (excel) voter data
     -   Admins: CRUD functionality for admin data
 
 -   **Voter Panel**:
