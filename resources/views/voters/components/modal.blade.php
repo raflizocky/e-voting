@@ -74,6 +74,36 @@
         </div>
     </div>
 
+    <!-- Import Voters Modal -->
+    <div class="modal fade" id="importVotersModal" tabindex="-1" aria-labelledby="importVotersModalLabel"
+        aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="importVotersModalLabel">Import Voters Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('voters.import.excel') }}" method="post" id="importVotersForm"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="file">Starts from row 2 column A (name, email, password)</label>
+                            <input type="file" class="form-control" id="file" name="file"
+                                accept=".xls,.xlsx,.csv" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function() {
             $('#editVotersModal').on('show.bs.modal', function(event) {

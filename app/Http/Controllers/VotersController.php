@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
+use PhpOffice\PhpSpreadsheet\IOFactory;
 class VotersController extends Controller
 {
     /**
@@ -168,5 +168,41 @@ class VotersController extends Controller
         ]);
 
         return $pdf->stream('voters_list_'.date('Y-m-d').'.pdf');
+    }
+
+    public function importExcel(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx,csv'
+        ]);
+
+        $file = $request->file('file');
+        $spreadsheet = IOFactory::load($file->getPathname());
+        $worksheet = $spreadsheet->getActiveSheet();
+
+        $startRow = 2;
+
+        $columns = [
+            'A' => 'name',
+            'B' => 'email',
+            'C' => 'password'
+        ];
+
+        // Iterate through each row in the worksheet
+        foreach ($worksheet->getRowIterator($startRow) as $row) {
+            $userData = [];
+
+            // Extract data from each relevant column
+            foreach ($columns as $col => $field) {
+                $cell = $worksheet->getCell($col . $row->getRowIndex());
+                $userData[$field] = $cell->getCalculatedValue();
+            }
+
+            $userData['password'] = Hash::make($userData['password']);
+
+            User::create($userData);
+        }
+
+        return redirect()->route('voters.index')->with('message', 'Data berhasil diimpor!');
     }
 }
