@@ -98,12 +98,12 @@ class VotersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        User::destroy($id);
+    // public function destroy(string $id)
+    // {
+    //     User::destroy($id);
 
-        return redirect()->route('voters.index')->with('message', 'Data deleted successfully!');
-    }
+    //     return redirect()->route('voters.index')->with('message', 'Data deleted successfully!');
+    // }
 
     public function exportExcel()
     {
@@ -205,4 +205,18 @@ class VotersController extends Controller
 
         return redirect()->route('voters.index')->with('message', 'Data berhasil diimpor!');
     }
+
+    public function massDelete(Request $request)
+    {
+        $request->validate([
+            'selected_ids' => 'required|array',
+            'selected_ids.*' => 'exists:users,id'
+        ]);
+
+        $selectedIds = $request->input('selected_ids', []);
+        $deletedCount = User::whereIn('id', $selectedIds)->delete();
+
+        return redirect()->route('voters.index')->with('message', $deletedCount . ' voters deleted successfully!');
+    }
+
 }
