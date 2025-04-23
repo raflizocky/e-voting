@@ -1,32 +1,36 @@
-<div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="p-5">
-                    <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4" style="font-family: 'Montserrat', sans-serif;">Login</h1>
-                    </div>
-                    <!-- Login form -->
-                    <form class="user" method="POST" action="{{ route('authenticate') }}">
-                        @csrf
-                        <!-- Email input field -->
-                        <div class="form-group">
-                            <label for="exampleInputEmail" class="sr-only">Email</label>
-                            <input type="email" name="email" class="form-control form-control-user"
-                                id="exampleInputEmail" placeholder="Email..." value="{{ old('email') }}" required>
-                        </div>
-                        <!-- Password input field -->
-                        <div class="form-group">
-                            <label for="exampleInputPassword" class="sr-only">Password</label>
-                            <input type="password" name="password" class="form-control form-control-user"
-                                id="exampleInputPassword" placeholder="Password..." value="{{ old('password') }}"
-                                required>
-                        </div>
-                        <!-- Login button -->
-                        <button type="submit" class="btn btn-primary btn-user btn-block">Submit</button>
-                    </form>
-                </div>
-            </div>
+<h4 class="text-center mb-4">Login</h4>
+                    
+<form method="POST" action="{{ route('authenticate') }}">
+    @csrf
+    <div class="mb-4">
+        <label for="email" class="form-label">Email Address</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-envelope text-secondary"></i>
+            </span>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" value="{{ old('email') }}" required>
         </div>
     </div>
-</div>
+    
+    <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <i class="fas fa-lock text-secondary"></i>
+            </span>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
+        </div>
+    </div>
+    
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt me-2"></i> Login
+        </button>
+    </div>
+    
+    <hr class="my-4">
+    
+    <div class="text-center">
+        <p>Need an account to vote? Contact your administrator.</p>
+    </div>
+</form>
