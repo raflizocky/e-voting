@@ -1,5 +1,5 @@
 ## Demo
-<img src="https://github.com/user-attachments/assets/e8648a20-5683-479c-9431-9949a4626699" alt="Dashboard" width="100%">
+<img src="https://github.com/user-attachments/assets/e508965c-87f2-4b85-88a4-f464df3049ee" alt="Dashboard" width="100%">
 
 <a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View more</a>
 
