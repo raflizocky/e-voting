@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Demo
+<img src="https://github.com/user-attachments/assets/20acc200-6deb-4c7a-bcf5-cbad643dd5f4" alt="Dashboard" width="100%">
 
-## Getting Started
+<a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View more</a>
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-   **Admin Panel**:
+    -   Dashboard: Displays voter data (total voters, voted, not voted), vote count chart, generate pdf, and send vote report to email 
+    -   Candidates: CRUD functionality for candidate data
+    -   Voters: CRUD functionality for voter data, export (excel, pdf) voter data, import (excel) voter data
+    -   Admins: CRUD functionality for admin data
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   **Voter Panel**:
+    -   Election Page: Displays all candidates
+    -   Results Page: Displays vote count chart for all candidates
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<a href="https://github.com/raflizocky/e-voting/blob/main/INSTALL.md">Installation & Usage Guide</a>
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+If you encounter any issues or would like to contribute to the project, feel free to:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   Report any [issues](https://github.com/raflizocky/e-voting/issues)
+-   Submit a [pull request](https://github.com/raflizocky/e-voting/pulls)
+-   Participate in [discussions](https://github.com/raflizocky/e-voting/discussions) for any questions, feedback, or suggestions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Code released under the [MIT License](https://github.com/raflizocky/e-voting/blob/main/LICENSE).
