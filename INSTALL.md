@@ -1,10 +1,11 @@
 ## Prerequisites
 
+-   Node.js >= 18.18
 -   PHP >= 8.2
 -   Composer
 -   XAMPP/MAMP/Laragon/Herd/etc
 
-### Without Docker
+## Installation
 
 1. Create the database (ex: `e_voting`)
 
@@ -15,10 +16,12 @@
     ```
 
     ```shell
-    code e-voting
+    git clone -b main https://github.com/raflizocky/e-voting.git
     ```
 
-3. `.env`
+3. Open both in different text editor
+
+4. `.env` (e-voting)
 
     - Terminal:
         ```shell
@@ -45,46 +48,23 @@
         MAIL_FROM_NAME="${APP_NAME}"
         ```
 
-4. Terminal
+5. Terminal
     - ```shell
       composer update ; composer i ; php artisan key:generate ; php artisan mi:f --seed ; php artisan storage:link ; php artisan ser
       ```
 
----
-
-### With Docker
-
-> If it's laggy when running, that's okay/fine.
-
-1. Terminal
-
-    ```shell
-    git clone https://github.com/raflizocky/e-voting.git
-    ```
-
-    ```shell
-    code e-voting
-    ```
-
-2. Open Docker Desktop (Windows, MacOS)
-
-3. `.env`
-
+6. fe-voting
+   
     - Terminal:
         ```shell
-        cp .env.example .env
-        ```
-    - Adjust `.env`:
-        ```shell
-        DB_CONNECTION=mysql
-        DB_HOST=mysql_db
-        DB_PORT=3306
-        DB_DATABASE=e_voting
-        DB_USERNAME=root
-        DB_PASSWORD=secret
+        npm run i ; npm run dev
         ```
 
-4. Terminal (`makefile` is optional, u can use usual docker compose command (see `makefile` file))
+### Installation (Docker)
+
+1. Open Docker Desktop (Windows, MacOS)
+
+2. Terminal (`makefile` is optional, u can use usual docker compose command (see `makefile` file))
 
     - ```shell
       winget install ezwinports.make #for windows only
@@ -108,10 +88,12 @@
       make key-generate
       ```
 
-5. Open project:
+3. Open project:
     - e-voting -> `8000:8000`
     - phpmyadmin -> `8080:80`
 
+4. Adjust Login URL of e-voting at fe-voting
+    
 ---
 
 ## Usage
