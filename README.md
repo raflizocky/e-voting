@@ -1,5 +1,10 @@
-## Demo
-<img src="https://github.com/user-attachments/assets/831705ef-542f-4db8-b891-4c4125cc6d55" alt="Dashboard" width="100%">
+# E-Voting
+
+A secure and customizable e-voting system for managing elections, casting votes, and tracking real-time results—built for transparency and ease of use. Developed using **Laravel** and **Bootstrap**.
+
+Need custom features? [Click Here](mailto:work.raflizocky@gmail.com).
+
+<img src="demo-img/login.jpeg" alt="Login" width="100%">
 
 <a href="https://github.com/raflizocky/e-voting/blob/main/demo-img/Demo.md">View more</a>
 
@@ -29,4 +34,4 @@ If you encounter any issues or would like to contribute to the project, feel fre
 
 ## License
 
-Code released under the [MIT License](https://github.com/raflizocky/e-voting/blob/main/LICENSE).
+Code released under the [MIT License](https://github.com/raflizocky/e-voting/blob/main/LICENSE). Attribution appreciated.
